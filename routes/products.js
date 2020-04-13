@@ -7,8 +7,18 @@ router.get('/', (req, res, next) => {
     Product.find()
         .exec()
         .then(result => {
-            res.status(200)
-                .json({result})
+            if (result.length > 0) {
+                res.status(200)
+                    .json({
+                        message: "Ada data",
+                        result: result,
+                    })
+            } else {
+                res.status(200)
+                    .json({
+                        message: "Tidak ada data",
+                    })
+            }
         })
         .catch(err => {
             res.status(500).json({error: err})
@@ -25,10 +35,14 @@ router.post('/', (req, res, next) => {
         .save()
         .then(result => {
             console.log(result)
-        });
-    res.status(201).json({
-        message: "Product added",
-        createdProduct: product
+            res.status(201).json({
+                message: "Product added",
+            });
+        }).catch(err => {
+        res.status(500).json({
+            error: err,
+            message: err.message
+        })
     })
 })
 

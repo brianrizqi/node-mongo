@@ -10,6 +10,8 @@ mongoose.connect('mongodb://localhost:27017/', {
     useUnifiedTopology: true
 }, err => err ? console.log(err) : console.log('Connected to database'));
 
+// mongoose.Promise = global.promise;
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
