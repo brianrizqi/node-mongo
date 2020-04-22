@@ -35,8 +35,8 @@ app.use((req, res, next) => {
 const productsRoute = require('./routes/products');
 const ordersRoute = require('./routes/orders');
 
-app.use('/product', productsRoute);
-app.use('/order', ordersRoute);
+app.use('/api/product', productsRoute);
+app.use('/api/order', ordersRoute);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');
